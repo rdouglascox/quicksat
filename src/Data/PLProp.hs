@@ -1,12 +1,9 @@
+module Data.PLProp (Prop (..)) where
 
-data PTree = NonBranching TProp PTree | Branching TProp PTree PTree 
-
-type TProp = (Prop,Bool)
-
-data Prop = Basic String 
+data Prop = Basic Char
           | Negation Prop
           | Conjunction Prop Prop
           | Disjunction Prop Prop
           | Conditional Prop Prop
           | Biconditional Prop Prop
-
+    deriving (Show,Eq,Ord)
