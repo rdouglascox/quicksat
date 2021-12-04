@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Lib
+      PL.NoSets
   other-modules:
       Paths_quicksat
   hs-source-dirs:
