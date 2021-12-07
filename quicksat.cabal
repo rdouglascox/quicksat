@@ -35,6 +35,7 @@ library
       Trees.TextBook3
       Trees.TextBook4
       Trees.TextBook5
+      Trees.TextBook6
   other-modules:
       Paths_quicksat
   hs-source-dirs:

@@ -100,8 +100,7 @@ mktreeSimple :: [Prop] -> PTree
 mktreeSimple ps = mktreeSimple1 (prepPTree ps)
 
 mktreeSimple1 :: PTree -> PTree
-mktreeSimple1 t = let new = applyClosure t in
-    mktreeSimple2 new new
+mktreeSimple1 t = mktreeSimple2 t t
 
 mktreeSimple2 :: PTree -> PTree -> PTree
 mktreeSimple2 old t = let new = applyRule t in
