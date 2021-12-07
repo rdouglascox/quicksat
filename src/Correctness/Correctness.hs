@@ -7,6 +7,8 @@ import qualified Trees.TextBook2 as TB2
 import qualified Trees.TextBook3 as TB3
 import qualified Trees.TextBook4 as TB4
 import qualified Trees.TextBook5 as TB5
+import qualified  Trees.TextBook7 as TB7
+
 import Random.PLprops ( testprops1 )
 
 import Printing.PLprop (printprops)
@@ -17,7 +19,7 @@ correct :: [Prop] -> Bool
 correct = TB1.satcheckSimple -- known correct sat checking function here
 
 check :: [Prop] -> Bool
-check = TB5.satcheckSimple -- sat checking function to test here
+check = TB7.satcheckSimple -- sat checking function to test here
 
 using :: [[Prop]]
 using = testprops1 -- which list of list of propositions to test against

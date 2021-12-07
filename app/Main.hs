@@ -13,6 +13,7 @@ import qualified  Trees.TextBook3 as TB3
 import qualified  Trees.TextBook4 as TB4
 import qualified  Trees.TextBook5 as TB5
 import qualified  Trees.TextBook6 as TB6
+import qualified  Trees.TextBook7 as TB7
 
 main :: IO ()
 main = defaultMain [
@@ -32,6 +33,7 @@ testblock ps = [ bench "TextBook1" $ whnf (deepmap TB1.mktreeSimple) ps
             , bench "TextBook4 - closure only on lits" $ whnf (deepmap TB4.mktreeSimple) ps
             , bench "TextBook5 - non-branching first" $ whnf (deepmap TB5.mktreeSimple) ps
             , bench "TextBook6 - non-branching first, closure on lits last" $ whnf (deepmap TB6.mktreeSimple) ps
+            , bench "TextBook7 - native rose trees" $ whnf (deepmap TB7.mktreeSimple) ps
             ]
 
 
