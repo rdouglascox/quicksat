@@ -1,6 +1,8 @@
 {-# LANGUAGE TupleSections #-}
 
-module Trees.TextBook2 (mktreeSimple, satcheckSimple, prepPTree, applyRule)  where
+module Trees.TextBook3 (mktreeSimple, satcheckSimple, prepPTree, applyRule)  where
+
+-- testing speed gains of only applying closure at the end of building the tree
 
 import Data.PLProp ( Prop(..) )
 
@@ -102,13 +104,13 @@ mktreeSimple1 t = let new = applyClosure t in
     mktreeSimple2 new new
 
 mktreeSimple2 :: PTree -> PTree -> PTree
-mktreeSimple2 old t = let new = (applyClosure . applyRule) t in
+mktreeSimple2 old t = let new = applyRule t in
     if old == new
         then old
         else mktreeSimple2 new new
 
 satcheckSimple :: [Prop] -> Bool
-satcheckSimple t = hasopen (mktreeSimple t)
+satcheckSimple t = hasopen $ applyClosure (mktreeSimple t)
 
 
 

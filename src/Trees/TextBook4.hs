@@ -1,6 +1,8 @@
 {-# LANGUAGE TupleSections #-}
 
-module Trees.TextBook2 (mktreeSimple, satcheckSimple, prepPTree, applyRule)  where
+module Trees.TextBook4 (mktreeSimple, satcheckSimple, prepPTree, applyRule)  where
+
+-- closure only on literals
 
 import Data.PLProp ( Prop(..) )
 
@@ -74,11 +76,16 @@ applyClosure = applyClosure1 []
 
 applyClosure1 :: [Prop] -> PTree -> PTree
 applyClosure1 acc t = case t of
-  Br2 tp (lt,rt) -> Br2 tp (applyClosure1 (fst tp: acc) lt, applyClosure1 (fst tp: acc) rt)
+  Br2 tp (lt,rt) -> Br2 tp (applyClosure1 (acclits tp acc) lt, applyClosure1 (acclits tp acc) rt)
   Br1 tp m_pt -> case m_pt of
-    Nothing -> if check (fst tp: acc) then Br1 tp (Just Closed) else Br1 tp Nothing
-    Just pt -> Br1 tp (Just $ applyClosure1 (fst tp : acc) pt)
+    Nothing -> if check (acclits tp acc) then Br1 tp (Just Closed) else Br1 tp Nothing
+    Just pt -> Br1 tp (Just $ applyClosure1 (acclits tp acc) pt)
   Closed -> Closed
+
+acclits :: TProp -> [Prop] -> [Prop]
+acclits (Basic x,_) ps = Basic x : ps
+acclits (Negation (Basic x),_) ps = Negation (Basic x) : ps
+acclits _ ps = ps
 
 check :: [Prop] -> Bool
 check xs = any (\x -> (x `elem` xs) && Negation x `elem` xs) xs
