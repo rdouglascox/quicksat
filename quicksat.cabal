@@ -28,6 +28,7 @@ library
       Correctness.Correctness
       Data.PLProp
       Lib
+      NormalForms.PLnormalforms
       Printing.PLprop
       Random.PLprops
       Trees.TextBook1
