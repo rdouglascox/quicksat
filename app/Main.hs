@@ -14,6 +14,8 @@ import qualified  Trees.TextBook4 as TB4
 import qualified  Trees.TextBook5 as TB5
 import qualified  Trees.TextBook6 as TB6
 import qualified  Trees.TextBook7 as TB7
+import qualified  NormalForms.PLnormalforms as NF1
+import qualified  DP.DP as DP1
 
 main :: IO ()
 main = defaultMain [
@@ -34,6 +36,8 @@ testblock ps = [ bench "TextBook1" $ whnf (deepmap TB1.mktreeSimple) ps
             , bench "TextBook5 - non-branching first" $ whnf (deepmap TB5.mktreeSimple) ps
             , bench "TextBook6 - non-branching first, closure on lits last" $ whnf (deepmap TB6.mktreeSimple) ps
             , bench "TextBook7 - native rose trees" $ whnf (deepmap TB7.mktreeSimple) ps
+            , bench "DNFsat" $ whnf (deepmap NF1.dnfsat) ps
+            , bench "DPsat" $ whnf (deepmap DP1.dpsat) ps
             ]
 
 

@@ -27,6 +27,7 @@ library
   exposed-modules:
       Correctness.Correctness
       Data.PLProp
+      DP.DP
       Lib
       NormalForms.PLnormalforms
       Printing.PLprop

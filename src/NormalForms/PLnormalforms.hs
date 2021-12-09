@@ -1,4 +1,4 @@
-module NormalForms.PLnormalforms where
+module NormalForms.PLnormalforms (dnfsat) where
 
 import Data.PLProp
 
@@ -58,6 +58,10 @@ trivial lits = let (pos,neg) = S.partition positive lits in
 simpdnf :: Prop -> S.Set (S.Set Prop)
 simpdnf fm = let djs = S.filter (not . trivial) (purednf (nnf fm)) in
     S.filter (\d -> not (any (`S.isProperSubsetOf` d) djs)) djs
+
+-- | sat checking based on simpdnf (set based dnf representation)
+dnfsat :: [Prop] -> Bool 
+dnfsat p = not $ S.null $ simpdnf (foldr1 Conjunction p)
 
 listdisj :: S.Set Prop -> Prop 
 listdisj s = if S.null s then Disjunction (Basic 'A') (Negation (Basic 'A'))
