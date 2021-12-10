@@ -42,6 +42,12 @@ testprops6 = take 10 $ nrprops (mkStdGen 5) localsettings
                                     ,maxConstr = 16
                                     ,numProps = 3}
 
+testprops10 :: [[Prop]]
+testprops10 = take 100000 $ nrprops (mkStdGen 3) localsettings
+    where localsettings = dSettings {minConstr = 2
+                                    ,maxConstr = 4
+                                    ,numProps = 1}
+
 props :: RandomGen g => g -> Int -> [[Prop]]
 props g n = take n $ nrprops g dSettings
 
@@ -87,7 +93,7 @@ instance Eq Constructor where
 -- HELPERS
 
 r :: RandomGen g => g -> [a] -> a
-r g x = x!!fst(randomR(0,((length x)) -1) g)
+r g x = x!!fst(randomR(0,length x -1) g)
 
 gens :: RandomGen g => g -> [g]
 gens g = g : gens (snd $ next g)

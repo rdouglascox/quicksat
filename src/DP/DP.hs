@@ -1,4 +1,4 @@
-module DP.DP (dnfsat,dpsat) where
+module DP.DP (dnfsat,dpsat,cnf,dnf,nnf,dnf',onelittest,onelittestapply,antest,antestapply,restest,restestapply) where
 
 import Data.PLProp
 
@@ -66,11 +66,11 @@ dnfsat :: [Prop] -> Bool
 dnfsat p = not $ S.null $ simpdnf (foldr1 Conjunction p)
 
 listdisj :: S.Set Prop -> Prop
-listdisj s = if S.null s then Disjunction (Basic 'A') (Negation (Basic 'A'))
+listdisj s = if S.null s then Conjunction (Basic 'A') (Negation (Basic 'A'))
     else foldr1 Disjunction (S.elems s)
 
 listconj :: S.Set Prop -> Prop
-listconj s = if S.null s then Conjunction (Basic 'A') (Negation (Basic 'A'))
+listconj s = if S.null s then Disjunction (Basic 'A') (Negation (Basic 'A'))
     else foldr1 Conjunction (S.elems s)
 
 dnf :: Prop -> Prop
@@ -98,6 +98,18 @@ oneliteralrule clauses =
           let clauses1 = S.filter (S.notMember u) clauses in
               Just $ S.map (S.delete u') clauses1
 
+onelittest :: Prop -> Prop
+onelittest p = let x = oneliteralrule (simpcnf p) in 
+    case x of 
+        Nothing -> p
+        Just set -> listconj (S.map listdisj set)
+
+onelittestapply :: Prop -> Bool
+onelittestapply p = let x = oneliteralrule (simpcnf p) in 
+    case x of 
+        Nothing -> False
+        Just set -> True
+
 unarySet :: S.Set Prop -> Bool
 unarySet s = setSize s == 1
 
@@ -123,6 +135,19 @@ affirmativenegativerule clauses =
     if pure == S.empty
         then Nothing
         else Just $ S.filter (\x -> S.intersection x pure == S.empty) clauses
+
+antest :: Prop -> Prop
+antest p = let x = affirmativenegativerule (simpcnf p) in 
+    case x of 
+        Nothing -> p
+        Just set -> listconj (S.map listdisj set)
+
+antestapply :: Prop -> Bool
+antestapply p = let x = affirmativenegativerule (simpcnf p) in 
+    case x of 
+        Nothing -> False
+        Just set -> True
+
 
 -- | third the resolution rule
 
@@ -156,6 +181,18 @@ minimize :: (a -> Int) -> S.Set a -> a
 minimize f xs = let ordindex = map f (S.toList xs) in
     fromJust $ L.lookup (minimum ordindex) (zip ordindex (S.toList xs))
 
+restest :: Prop -> Prop
+restest p = let x = resolutionrule (simpcnf p) in 
+    case x of 
+        Nothing -> p
+        Just set -> listconj (S.map listdisj set)
+
+restestapply :: Prop -> Bool
+restestapply p = let x = resolutionrule (simpcnf p) in 
+    case x of 
+        Nothing -> False
+        Just set -> True
+
 -- the dp procedure
 
 dp :: S.Set (S.Set Prop) -> Bool
@@ -172,5 +209,5 @@ dp clauses
 
 -- | dp sat
 
-dpsat :: [Prop] -> Bool 
-dpsat ps = dp (purecnf (foldr1 Conjunction ps))
+dpsat :: [Prop] -> Bool
+dpsat ps = dp (simpcnf (foldr1 Conjunction ps))
