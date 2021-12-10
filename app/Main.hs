@@ -16,6 +16,7 @@ import qualified  Trees.TextBook6 as TB6
 import qualified  Trees.TextBook7 as TB7
 import qualified  NormalForms.PLnormalforms as NF1
 import qualified  DP.DP as DP1
+import qualified Tables.Tables as T1
 
 main :: IO ()
 main = defaultMain [
@@ -38,6 +39,7 @@ testblock ps = [ bench "TextBook1" $ whnf (deepmap TB1.mktreeSimple) ps
             , bench "TextBook7 - native rose trees" $ whnf (deepmap TB7.mktreeSimple) ps
             , bench "DNFsat" $ whnf (deepmap NF1.dnfsat) ps
             , bench "DPsat" $ whnf (deepmap DP1.dpsat) ps
+            , bench "TableSat" $ whnf (deepmap T1.tablesat) ps
             ]
 
 

@@ -1,4 +1,4 @@
-module DP.DP (dnfsat,dpsat,cnf,dnf,nnf,dnf',onelittest,onelittestapply,antest,antestapply,restest,restestapply) where
+module DP.DP (dnfsat,dpsat,cnf,dnf,nnf,dnf') where
 
 import Data.PLProp
 
@@ -95,20 +95,8 @@ oneliteralrule clauses =
       Nothing -> Nothing
       Just set -> let u = head $ S.toList set in
                   let u' = negate' u in
-          let clauses1 = S.filter (S.notMember u) clauses in
-              Just $ S.map (S.delete u') clauses1
-
-onelittest :: Prop -> Prop
-onelittest p = let x = oneliteralrule (simpcnf p) in 
-    case x of 
-        Nothing -> p
-        Just set -> listconj (S.map listdisj set)
-
-onelittestapply :: Prop -> Bool
-onelittestapply p = let x = oneliteralrule (simpcnf p) in 
-    case x of 
-        Nothing -> False
-        Just set -> True
+          let clauses1 = S.filter (not . S.member u) clauses in
+              Just $ S.map (S.difference (S.singleton u')) clauses1
 
 unarySet :: S.Set Prop -> Bool
 unarySet s = setSize s == 1
@@ -135,19 +123,6 @@ affirmativenegativerule clauses =
     if pure == S.empty
         then Nothing
         else Just $ S.filter (\x -> S.intersection x pure == S.empty) clauses
-
-antest :: Prop -> Prop
-antest p = let x = affirmativenegativerule (simpcnf p) in 
-    case x of 
-        Nothing -> p
-        Just set -> listconj (S.map listdisj set)
-
-antestapply :: Prop -> Bool
-antestapply p = let x = affirmativenegativerule (simpcnf p) in 
-    case x of 
-        Nothing -> False
-        Just set -> True
-
 
 -- | third the resolution rule
 
@@ -180,18 +155,6 @@ resolutionrule clauses =
 minimize :: (a -> Int) -> S.Set a -> a
 minimize f xs = let ordindex = map f (S.toList xs) in
     fromJust $ L.lookup (minimum ordindex) (zip ordindex (S.toList xs))
-
-restest :: Prop -> Prop
-restest p = let x = resolutionrule (simpcnf p) in 
-    case x of 
-        Nothing -> p
-        Just set -> listconj (S.map listdisj set)
-
-restestapply :: Prop -> Bool
-restestapply p = let x = resolutionrule (simpcnf p) in 
-    case x of 
-        Nothing -> False
-        Just set -> True
 
 -- the dp procedure
 
