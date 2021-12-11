@@ -31,9 +31,10 @@ testprops4 = take 10 $ nrprops (mkStdGen 5) localsettings
 
 testprops5 :: [[Prop]]
 testprops5 = take 10 $ nrprops (mkStdGen 5) localsettings
-    where localsettings = dSettings {minConstr = 10
-                                    ,maxConstr = 11
-                                    ,numProps = 3}
+    where localsettings = dSettings {minConstr = 3
+                                    ,maxConstr = 9
+                                    ,numProps = 3
+                                    ,basics = "ABCDEFGHIJKLIMNOP"}
 
 
 testprops6 :: [[Prop]]

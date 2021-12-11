@@ -12,16 +12,17 @@ import qualified  NormalForms.PLnormalforms as NF1
 import qualified DP.DP as DP1
 import qualified Tables.Tables as T1
 
+
 import Random.PLprops
 
-import Printing.PLprop (printprops)
+import Printing.PLprop (printprops,printprop)
 import DP.DP
 
 -- | functions to test against each other here
 
 correct :: [Prop] -> Bool
 -- correct = TB1.satcheckSimple -- known correct sat checking function here
-correct = T1.tablesat 
+correct = T1.tablesat
 
 check :: [Prop] -> Bool
 check =DP1.dpsat -- sat checking function to test here
@@ -54,7 +55,7 @@ testall = do
     putStrLn "disagreeing on:"
     mapM_ (\x -> putStrLn $ printprops x ++ " Correct says: " ++ satstring (correct x) ++ " And Check says: " ++ satstring (check x)) testfilterall
 
-satstring :: Bool -> String 
+satstring :: Bool -> String
 satstring True = "it is satisfiable"
 satstring False = "it is not satisfiable"
 
@@ -68,6 +69,26 @@ equivs = map (not . correct . (:[])) equivpairs
 equivsshow :: [Prop]
 equivsshow = filter (correct . (:[])) equivpairs
 
+equivsshow' :: [[Prop]]
+equivsshow' = map (: []) equivsshow
+
 equivpairs :: [Prop]
 equivpairs = zipWith (\x y -> Negation (Biconditional x y) ) (concat testprops10) (map DP1.cnf $ concat testprops10)
 
+dpsattrace :: [Prop] -> IO ()
+dpsattrace ps = do
+    let input = DP1.simpcnf (foldr1 Conjunction ps)
+    putStrLn "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    putStrLn ("The raw input was: " ++ printprops ps)
+    putStrLn ("The raw CNF representation is: " ++ printprop (cnf (foldr1 Conjunction ps)))
+    putStrLn ("Correct says (of the raw input): " ++ satstring (correct ps) )
+    putStrLn ("Correct says (of the raw CNF representation):" ++ satstring (correct [cnf (foldr1 Conjunction ps)]))
+    putStrLn ("Is the raw cnf equivalent to the raw input?: " ++ myequivtest (cnf (foldr1 Conjunction ps)) (foldr1 Conjunction ps))
+    putStrLn ("The set based CNF is: " ++ printSets input)
+    putStrLn "Here's what DP has to say for itself:\n"
+    DP1.dptrace input
+
+myequivtest :: Prop -> Prop -> String
+myequivtest x y = if correct [Negation (Biconditional x y)]
+    then "Not Equivalent"
+    else "Equivalent"

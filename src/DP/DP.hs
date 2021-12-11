@@ -1,8 +1,10 @@
-module DP.DP (dnfsat,dpsat,cnf,dnf,nnf,dnf') where
+module DP.DP (dnfsat,dpsat,cnf,dnf,nnf,dnf',simpcnf,dptrace,printSets) where
 
 import Data.PLProp
 
 import Control.Applicative ( Applicative(liftA2) )
+
+import Printing.PLprop
 
 import qualified Data.Set as S
 import qualified Data.List as L
@@ -88,7 +90,7 @@ cnf fm = listconj (S.map listdisj (simpcnf fm))
 
 -- | okay, here we go, davis-putnam
 
--- | first the "one literal rule"
+-- | first the "one literal rule" (this rule is correct)
 oneliteralrule :: S.Set (S.Set Prop) -> Maybe (S.Set (S.Set Prop))
 oneliteralrule clauses =
     let mu = setFind unarySet clauses in case mu of
@@ -96,7 +98,8 @@ oneliteralrule clauses =
       Just set -> let u = head $ S.toList set in
                   let u' = negate' u in
           let clauses1 = S.filter (not . S.member u) clauses in
-              Just $ S.map (S.difference (S.singleton u')) clauses1
+        --      Just $ S.map (\x -> S.difference x (S.singleton u')) clauses1
+              Just $ S.map (S.\\ S.singleton u') clauses1
 
 unarySet :: S.Set Prop -> Bool
 unarySet s = setSize s == 1
@@ -117,8 +120,8 @@ affirmativenegativerule :: S.Set (S.Set Prop) -> Maybe (S.Set (S.Set Prop))
 affirmativenegativerule clauses =
     let (neg',pos) = S.partition negative (S.unions clauses) in
     let neg = S.map negate' neg' in
-    let posonly = S.difference pos neg in
-    let negonly = S.difference neg pos in
+    let posonly = pos S.\\ neg in
+    let negonly = neg S.\\ pos in
     let pure = S.union posonly (S.map negate' negonly) in
     if pure == S.empty
         then Nothing
@@ -132,7 +135,7 @@ resolveon p clauses =
     let (pos,notpos) = S.partition (S.member p) clauses in
     let (neg,other) = S.partition (S.member p') notpos in
     let pos' = S.map (S.filter (/= p)) pos in
-    let neg' = S.map (S.filter (/= p)) neg in
+    let neg' = S.map (S.filter (/= p')) neg in
     let res0 = S.fromList $ [S.union x y | x <- S.toList pos', y <- S.toList neg'] in
     Just $ S.union other (S.filter (not . trivial) res0)
 
@@ -174,3 +177,37 @@ dp clauses
 
 dpsat :: [Prop] -> Bool
 dpsat ps = dp (simpcnf (foldr1 Conjunction ps))
+
+printSets :: S.Set (S.Set Prop) -> String
+printSets s = "{" ++ L.intercalate "," (map printSet (S.toList s)) ++ "}"
+
+printSet :: S.Set Prop -> String
+printSet s = "[" ++ printprops (S.toList s) ++ "]"
+
+
+dptrace :: S.Set (S.Set Prop) -> IO ()
+dptrace clauses = do
+    if clauses == S.empty 
+        then putStrLn "Concluded that it is satisfiable."
+        else if S.member S.empty clauses
+            then putStrLn "Concluded that it is not satisfiable."
+            else case oneliteralrule clauses of
+                 Nothing -> do
+                     putStrLn "Couldnt' apply the oneliteralrule!"
+                     putStrLn ("    " ++ printSets clauses)
+                     case affirmativenegativerule clauses of
+                            Nothing -> do 
+                                putStrLn "Couldn't apply the affirmative negative rule!"
+                                putStrLn ("    " ++ printSets clauses)
+                                case resolutionrule clauses of
+                                     Nothing -> do putStrLn "This shouldn't happen"
+                                     Just set -> do
+                                          putStrLn ("Applied the resolution rule\n    " ++ printSets set)  
+                                          dptrace set
+                            Just set -> do 
+                                putStrLn ("Applied the affirmative negative rule\n    " ++ printSets set)
+                                dptrace set
+                 Just set -> do
+                     putStrLn ("Applied the oneliteralrule rule:\n    " ++ printSets set)
+                     dptrace set
+

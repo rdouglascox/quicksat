@@ -4,7 +4,7 @@ import Criterion.Main
     ( defaultMain, bench, bgroup, whnf, Benchmark )
 
 import Random.PLprops
-    ( testprops1, testprops2, testprops3, testprops4 )
+    ( testprops1, testprops2, testprops3, testprops4, testprops5 )
 import Data.PLProp ( Prop(..) )
 
 import qualified  Trees.TextBook1 as TB1
@@ -27,6 +27,8 @@ main = defaultMain [
     bgroup "testprops3"  (testblock testprops3)
                         ,
     bgroup "testprops4"  (testblock testprops4)
+                        ,
+    bgroup "testprops5"  (testblock testprops5)
     ]
 
 testblock :: [[Prop]] -> [Benchmark]
