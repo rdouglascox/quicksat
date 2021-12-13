@@ -10,6 +10,7 @@ import qualified Trees.TextBook5 as TB5
 import qualified  Trees.TextBook7 as TB7
 import qualified  NormalForms.PLnormalforms as NF1
 import qualified DP.DP as DP1
+import qualified DP.DPLL as DPLL1
 import qualified Tables.Tables as T1
 
 
@@ -25,7 +26,7 @@ correct :: [Prop] -> Bool
 correct = T1.tablesat
 
 check :: [Prop] -> Bool
-check =DP1.dpsat -- sat checking function to test here
+check =DPLL1.dpllsat -- sat checking function to test here
 
 
 using :: [[Prop]]

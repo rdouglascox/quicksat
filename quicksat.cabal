@@ -28,6 +28,7 @@ library
       Correctness.Correctness
       Data.PLProp
       DP.DP
+      DP.DPLL
       Lib
       NormalForms.PLnormalforms
       Printing.PLprop
