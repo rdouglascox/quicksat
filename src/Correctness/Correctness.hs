@@ -12,7 +12,7 @@ import qualified  NormalForms.PLnormalforms as NF1
 import qualified DP.DP as DP1
 import qualified DP.DPLL as DPLL1
 import qualified Tables.Tables as T1
-
+import qualified Trees.JeffreyTrees as JT1
 
 import Random.PLprops
 
@@ -26,7 +26,7 @@ correct :: [Prop] -> Bool
 correct = T1.tablesat
 
 check :: [Prop] -> Bool
-check =DPLL1.dpllsat -- sat checking function to test here
+check =JT1.satcheckSimple -- sat checking function to test here
 
 
 using :: [[Prop]]
