@@ -1,0 +1,446 @@
+	Wed Dec 15 14:31 2021 Time and Allocation Profiling Report  (Final)
+
+	   quicksat-jeffrey2 +RTS -N -p -RTS
+
+	total time  =        1.09 secs   (4341 ticks @ 1000 us, 4 processors)
+	total alloc = 4,869,615,744 bytes  (excludes profiling overheads)
+
+COST CENTRE      MODULE                 SRC                                             %time %alloc
+
+contras.\        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:151:25-59             12.6    1.0
+==               Data.PLProp            src/Data/PLProp.hs:9:20-21                        8.1    0.0
+nextWord64       System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29)    6.6   23.1
+main             Main2                  app/Main2.hs:(7,1)-(8,46)                         5.7    3.4
+closure1         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(140,1)-(147,81)       4.8    8.5
+lrScan1          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(75,1)-(79,38)         4.0    4.4
+lrScan1.(...)    Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46               3.5    3.6
+gens             Random.PLprops         src/Random/PLprops.hs:100:1-32                    3.5    7.8
+applyDN          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(126,1)-(133,36)       3.2    5.2
+nextInt          System.Random.SplitMix src/System/Random/SplitMix.hs:(153,1)-(157,39)    2.8    5.4
+lrScan           Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-19                2.4    2.1
+applyAlphaRules  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(62,1)-(69,36)         2.3    3.4
+plus             System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10            2.3    2.5
+allapplied       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(161,1)-(169,45)       2.2    0.0
+uniformRM        System.Random.Internal src/System/Random/Internal.hs:566:3-85            1.9    4.3
+construct        Random.PLprops         src/Random/PLprops.hs:(119,1)-(132,20)            1.9    0.7
+applyBetaRules   Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(96,1)-(103,36)        1.8    2.6
+shiftXorMultiply System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46            1.6    2.1
+splitSMGen       System.Random.SplitMix src/System/Random/SplitMix.hs:(225,1)-(229,31)    1.5    2.1
+appendNodes      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(41,1)-(43,77)         1.4    2.1
+selectRule       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(48,1)-(57,18)         1.3    1.6
+mult             System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10            1.2    1.4
+shiftXor         System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37            1.2    1.4
+jeffreyloop      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(185,1)-(192,39)       1.1    0.2
+mix64            System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)     1.0    0.8
+constructlr      Random.PLprops         src/Random/PLprops.hs:(135,1)-(137,46)            1.0    0.9
+rprops'          Random.PLprops         src/Random/PLprops.hs:(143,1)-(145,28)            1.0    1.5
+uniformM         System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59)    0.9    1.6
+
+
+                                                                                                                                individual      inherited
+COST CENTRE                          MODULE                 SRC                                            no.       entries  %time %alloc   %time %alloc
+
+MAIN                                 MAIN                   <built-in>                                     12796           0    0.0    0.0   100.0  100.0
+ CAF                                 GHC.Conc.Signal        <entire-module>                                12911           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding        <entire-module>                                12892           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding.Iconv  <entire-module>                                12890           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Handle.FD       <entire-module>                                12881           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Handle.Text     <entire-module>                                12879           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.Show               <entire-module>                                12860           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.Event.Thread       <entire-module>                                12825           0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.Event.Poll         <entire-module>                                12813           0    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenSMGen0_$cgenWord64   System.Random.Internal src/System/Random/Internal.hs:481:3-11         15732           0    0.0    0.0     0.0    0.0
+  genWord64                          System.Random.Internal src/System/Random/Internal.hs:481:3-27         25636           1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenSMGen0_$cnext        System.Random.Internal src/System/Random/Internal.hs:479:3-6          15724           0    0.0    0.0     0.0    0.0
+  next                               System.Random.Internal src/System/Random/Internal.hs:479:3-19         25829           1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenSMGen0_$csplit       System.Random.Internal src/System/Random/Internal.hs:482:3-7          15738           0    0.0    0.0     0.0    0.0
+  split                              System.Random.Internal src/System/Random/Internal.hs:482:3-23         25643           1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenStdGen1              System.Random.Internal <no location info>                             15739           0    0.0    0.0     0.0    0.0
+  split                              System.Random.Internal src/System/Random/Internal.hs:473:19-27        25642           1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenStdGen10             System.Random.Internal <no location info>                             15725           0    0.0    0.0     0.0    0.0
+  next                               System.Random.Internal src/System/Random/Internal.hs:473:19-27        25828           1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenStdGen6              System.Random.Internal <no location info>                             15735           0    0.0    0.0     0.0    0.0
+  genWord64                          System.Random.Internal src/System/Random/Internal.hs:473:19-27        25635           1    0.0    0.0     0.0    0.0
+ CAF:closure                         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:137:1-7             25403           0    0.0    0.0     0.0    0.0
+  closure                            Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:137:1-21            25602           1    0.0    0.0     0.0    0.0
+ CAF:dSettings                       Random.PLprops         src/Random/PLprops.hs:64:1-9                   25428           0    0.0    0.0     0.0    0.0
+  dSettings                          Random.PLprops         src/Random/PLprops.hs:(64,1)-(74,22)           25613           1    0.0    0.0     0.0    0.0
+ CAF:dSettings1                      Random.PLprops         <no location info>                             25427           0    0.0    0.0     0.0    0.0
+ CAF:goldenGamma                     System.Random.SplitMix src/System/Random/SplitMix.hs:236:1-11         15691           0    0.0    0.0     0.0    0.0
+  goldenGamma                        System.Random.SplitMix src/System/Random/SplitMix.hs:236:1-32         25681           1    0.0    0.0     0.0    0.0
+ CAF:lrScan                          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-6              25396           0    0.0    0.0     0.0    0.0
+  lrScan                             Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-19             25809           1    0.0    0.0     0.0    0.0
+ CAF:m1_rmhY                         Random.PLprops         <no location info>                             25421           0    0.0    0.0     0.0    0.0
+  uniformM                           System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59) 25630           1    0.0    0.0     0.0    0.0
+   uniformWord64                     System.Random.Internal src/System/Random/Internal.hs:389:3-35         25632           1    0.0    0.0     0.0    0.0
+ CAF:main1                           Main2                  <no location info>                             25547           0    0.0    0.0     0.0    0.0
+  main                               Main2                  app/Main2.hs:(7,1)-(8,46)                      25592           1    0.0    0.0     0.0    0.0
+ CAF:mkStdGen1                       System.Random.Internal <no location info>                             15700           0    0.0    0.0     0.0    0.0
+  mkStdGen                           System.Random.Internal src/System/Random/Internal.hs:492:1-45         25652           1    0.0    0.0     0.0    0.0
+ CAF:mktreeSimple                    Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:201:1-12            25404           0    0.0    0.0     0.0    0.0
+  mktreeSimple                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:201:1-38            25598           1    0.0    0.0     0.0    0.0
+ CAF:mult                            System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-4          15687           0    0.0    0.0     0.0    0.0
+  mult                               System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25658           1    0.0    0.0     0.0    0.0
+ CAF:plus                            System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-4          15686           0    0.0    0.0     0.0    0.0
+  plus                               System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25679           1    0.0    0.0     0.0    0.0
+ CAF:prepTProps                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:177:1-10            25397           0    0.0    0.0     0.0    0.0
+  prepTProps                         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:177:1-26            25605           1    0.0    0.0     0.0    0.0
+ CAF:testprops10                     Random.PLprops         src/Random/PLprops.hs:47:1-11                  25434           0    0.0    0.0     0.3    0.4
+  testprops10                        Random.PLprops         src/Random/PLprops.hs:(47,1)-(50,50)           25594           1    0.1    0.1     0.3    0.4
+   nrprops                           Random.PLprops         src/Random/PLprops.hs:(148,1)-(149,52)         25595           1    0.0    0.0     0.3    0.3
+    nrprops.chop                     Random.PLprops         src/Random/PLprops.hs:149:11-52                25596      100000    0.3    0.3     0.3    0.3
+    numProps                         Random.PLprops         src/Random/PLprops.hs:57:27-34                 25607           1    0.0    0.0     0.0    0.0
+ CAF:testprops10_s                   Random.PLprops         src/Random/PLprops.hs:148:11                   25430           0    0.0    0.0     0.0    0.0
+  testprops10                        Random.PLprops         src/Random/PLprops.hs:(47,1)-(50,50)           25611           0    0.0    0.0     0.0    0.0
+   testprops10.localsettings         Random.PLprops         src/Random/PLprops.hs:(48,11)-(50,50)          25612           1    0.0    0.0     0.0    0.0
+ CAF:testprops11                     Random.PLprops         <no location info>                             25433           0    0.0    0.0    38.2   59.8
+  testprops10                        Random.PLprops         src/Random/PLprops.hs:(47,1)-(50,50)           25614           0    0.0    0.0    38.2   59.8
+   nrprops                           Random.PLprops         src/Random/PLprops.hs:(148,1)-(149,52)         25615           0    0.0    0.0    38.2   59.8
+    rprops'                          Random.PLprops         src/Random/PLprops.hs:(143,1)-(145,28)         25616      100000    1.0    1.5    38.2   59.8
+     construct                       Random.PLprops         src/Random/PLprops.hs:(119,1)-(132,20)         25759      640325    1.9    0.7    25.9   46.9
+      construct.g                    Random.PLprops         src/Random/PLprops.hs:132:11-20                25874      340258    0.2    0.3     8.5   23.7
+       gens                          Random.PLprops         src/Random/PLprops.hs:100:1-32                 25875     4083096    2.3    5.5     8.4   23.4
+        next                         System.Random.Internal src/System/Random/Internal.hs:473:19-27        25876           0    0.0    0.0     6.0   17.8
+         next                        System.Random.Internal src/System/Random/Internal.hs:479:3-19         25877           0    0.5    0.0     6.0   17.8
+          nextInt                    System.Random.SplitMix src/System/Random/SplitMix.hs:(153,1)-(157,39) 25878     3742838    1.6    3.7     5.6   17.8
+           nextWord64                System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25896     3742838    2.9   12.9     3.9   14.1
+            nextWord64.seed'         System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25897     3742838    0.2    0.0     1.0    1.2
+             plus                    System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25898           0    0.8    1.2     0.8    1.2
+      rbasic'                        Random.PLprops         src/Random/PLprops.hs:140:1-36                 25860      340258    0.2    0.0     3.2    5.8
+       basics                        Random.PLprops         src/Random/PLprops.hs:60:27-32                 25865      340258    0.0    0.0     0.0    0.0
+       r                             Random.PLprops         src/Random/PLprops.hs:97:1-40                  25866      340258    0.4    0.3     3.0    5.8
+        randomR                      System.Random          src/System/Random.hs:206:3-43                  25867      340258    0.0    0.0     2.6    5.6
+         runStateGen                 System.Random.Internal src/System/Random/Internal.hs:416:1-42         25868      340258    0.0    0.0     2.6    5.6
+          uniformRM                  System.Random.Internal src/System/Random/Internal.hs:566:3-85         25869      340258    0.6    1.6     2.6    5.6
+           uniformM                  System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59) 25870           0    0.3    0.6     2.0    3.9
+            uniformWord64            System.Random.Internal src/System/Random/Internal.hs:389:3-35         25871           0    0.0    0.0     1.7    3.3
+             genWord64               System.Random.Internal src/System/Random/Internal.hs:473:19-27        25872           0    0.0    0.0     1.7    3.3
+              genWord64              System.Random.Internal src/System/Random/Internal.hs:481:3-27         25873           0    0.2    0.2     1.7    3.3
+               nextWord64            System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25899      453389    0.3    1.5     1.5    3.1
+                mix64                System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25900      453389    0.1    0.2     1.0    1.4
+                 mix64.z1            System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25905      453389    0.0    0.0     0.3    0.5
+                  shiftXorMultiply   System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25906      453389    0.1    0.2     0.3    0.5
+                   shiftXor          System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25908      453389    0.1    0.1     0.1    0.1
+                   mult              System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25907           0    0.0    0.1     0.0    0.1
+                 mix64.z2            System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25901      453389    0.0    0.0     0.4    0.5
+                  shiftXorMultiply   System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25902      453389    0.3    0.2     0.4    0.5
+                   shiftXor          System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25904      453389    0.0    0.1     0.0    0.1
+                   mult              System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25903           0    0.1    0.1     0.1    0.1
+                 mix64.z3            System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25911      453389    0.1    0.1     0.2    0.1
+                  shiftXor           System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25912      453389    0.0    0.0     0.0    0.0
+                nextWord64.seed'     System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25909      453389    0.0    0.0     0.2    0.1
+                 plus                System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25910           0    0.1    0.1     0.1    0.1
+      constructlr                    Random.PLprops         src/Random/PLprops.hs:(135,1)-(137,46)         25786      240258    1.0    0.9     7.3    6.7
+       constructlr.(...)             Random.PLprops         src/Random/PLprops.hs:137:30-46                25880      240258    0.1    0.0     3.0    3.0
+        split                        System.Random.Internal src/System/Random/Internal.hs:473:19-27        25881           0    0.0    0.0     2.9    3.0
+         split                       System.Random.Internal src/System/Random/Internal.hs:482:3-23         25882           0    0.2    0.1     2.9    3.0
+          splitSMGen                 System.Random.SplitMix src/System/Random/SplitMix.hs:(225,1)-(229,31) 25888      240258    0.7    1.1     2.7    2.9
+           mix64                     System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25914      240258    0.2    0.1     0.7    0.7
+            mix64.z1                 System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25919      240258    0.0    0.0     0.3    0.3
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25920      240258    0.0    0.1     0.2    0.3
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25922      240258    0.1    0.1     0.1    0.1
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25921           0    0.1    0.1     0.1    0.1
+            mix64.z2                 System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25915      240258    0.0    0.0     0.1    0.3
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25916      240258    0.0    0.1     0.0    0.3
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25918      240258    0.0    0.1     0.0    0.1
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25917           0    0.0    0.1     0.0    0.1
+            mix64.z3                 System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25923      240258    0.2    0.1     0.2    0.1
+             shiftXor                System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25924      240258    0.0    0.0     0.0    0.0
+           mixGamma                  System.Random.SplitMix src/System/Random/SplitMix.hs:(267,1)-(274,40) 25925      240258    0.2    0.1     1.1    0.8
+            mixGamma.n               System.Random.SplitMix src/System/Random/SplitMix.hs:269:9-48         25926      240258    0.0    0.0     0.0    0.0
+            mixGamma.z1              System.Random.SplitMix src/System/Random/SplitMix.hs:268:9-36         25927      240258    0.1    0.0     0.9    0.7
+             mix64variant13          System.Random.SplitMix src/System/Random/SplitMix.hs:(256,1)-(264,9)  25928      240258    0.2    0.1     0.8    0.7
+              mix64variant13.z1      System.Random.SplitMix src/System/Random/SplitMix.hs:261:9-54         25933      240258    0.0    0.0     0.1    0.3
+               shiftXorMultiply      System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25934      240258    0.0    0.1     0.1    0.3
+                shiftXor             System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25936      240258    0.0    0.1     0.0    0.1
+                mult                 System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25935           0    0.0    0.1     0.0    0.1
+              mix64variant13.z2      System.Random.SplitMix src/System/Random/SplitMix.hs:262:9-54         25929      240258    0.1    0.0     0.4    0.3
+               shiftXorMultiply      System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25930      240258    0.1    0.1     0.3    0.3
+                shiftXor             System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25932      240258    0.1    0.1     0.1    0.1
+                mult                 System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25931           0    0.0    0.1     0.0    0.1
+              mix64variant13.z3      System.Random.SplitMix src/System/Random/SplitMix.hs:263:9-27         25937      240258    0.1    0.1     0.1    0.1
+               shiftXor              System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25938      240258    0.0    0.0     0.0    0.0
+           splitSMGen.seed'          System.Random.SplitMix src/System/Random/SplitMix.hs:228:5-30         25891      240258    0.0    0.0     0.1    0.1
+            plus                     System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25892           0    0.1    0.1     0.1    0.1
+           splitSMGen.seed''         System.Random.SplitMix src/System/Random/SplitMix.hs:229:5-31         25889      240258    0.0    0.0     0.1    0.1
+            plus                     System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25890           0    0.1    0.1     0.1    0.1
+       constructlr.(...)             Random.PLprops         src/Random/PLprops.hs:135:28-48                25816      240258    0.4    0.1     3.2    2.7
+        rsplitAt                     Random.PLprops         src/Random/PLprops.hs:(103,1)-(104,16)         25817      240258    0.3    0.3     2.8    2.6
+         rsplitAt.y                  Random.PLprops         src/Random/PLprops.hs:103:21-55                25818      240258    0.2    0.2     2.5    2.3
+          randomR                    System.Random          src/System/Random.hs:206:3-43                  25819      240258    0.0    0.0     2.3    2.1
+           runStateGen               System.Random.Internal src/System/Random/Internal.hs:416:1-42         25820      240258    0.2    0.0     2.3    2.1
+            uniformRM                System.Random.Internal src/System/Random/Internal.hs:566:3-85         25821      240258    0.6    0.8     2.1    2.1
+             uniformM                System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59) 25822           0    0.1    0.2     1.5    1.3
+              uniformWord64          System.Random.Internal src/System/Random/Internal.hs:389:3-35         25823           0    0.0    0.0     1.4    1.1
+               genWord64             System.Random.Internal src/System/Random/Internal.hs:473:19-27        25824           0    0.0    0.0     1.3    1.1
+                genWord64            System.Random.Internal src/System/Random/Internal.hs:481:3-27         25825           0    0.2    0.1     1.3    1.1
+                 nextWord64          System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25838      150339    0.4    0.5     1.2    1.0
+                  mix64              System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25839      150339    0.1    0.1     0.6    0.5
+                   mix64.z1          System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25844      150339    0.0    0.0     0.2    0.2
+                    shiftXorMultiply System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25845      150339    0.1    0.1     0.2    0.2
+                     shiftXor        System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25847      150339    0.0    0.0     0.0    0.0
+                     mult            System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25846           0    0.1    0.0     0.1    0.0
+                   mix64.z2          System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25840      150339    0.0    0.0     0.3    0.2
+                    shiftXorMultiply System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25841      150339    0.0    0.1     0.3    0.2
+                     shiftXor        System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25843      150339    0.1    0.0     0.1    0.0
+                     mult            System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25842           0    0.2    0.0     0.2    0.0
+                   mix64.z3          System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25850      150339    0.0    0.0     0.0    0.0
+                    shiftXor         System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25851      150339    0.0    0.0     0.0    0.0
+                  nextWord64.seed'   System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25848      150339    0.1    0.0     0.2    0.0
+                   plus              System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25849           0    0.1    0.0     0.1    0.0
+       constructlr.g1                Random.PLprops         src/Random/PLprops.hs:137:30-46                25879      240258    0.0    0.0     0.0    0.0
+       constructlr.g2                Random.PLprops         src/Random/PLprops.hs:137:30-46                25913      240258    0.0    0.0     0.0    0.0
+       constructlr.l                 Random.PLprops         src/Random/PLprops.hs:135:28-48                25815      240258    0.0    0.0     0.0    0.0
+       constructlr.r                 Random.PLprops         src/Random/PLprops.hs:135:28-48                25859      240258    0.1    0.0     0.1    0.0
+       dSettings                     Random.PLprops         src/Random/PLprops.hs:(64,1)-(74,22)           25788           0    0.0    0.1     0.0    0.1
+      construct.g                    Random.PLprops         src/Random/PLprops.hs:124:11-20                25826      172951    0.2    0.2     2.5    3.4
+       gens                          Random.PLprops         src/Random/PLprops.hs:100:1-32                 25827      686983    0.5    0.8     2.3    3.2
+        next                         System.Random.Internal src/System/Random/Internal.hs:473:19-27        25831           0    0.0    0.0     1.8    2.4
+         next                        System.Random.Internal src/System/Random/Internal.hs:479:3-19         25832           0    0.0    0.0     1.8    2.4
+          nextInt                    System.Random.SplitMix src/System/Random/SplitMix.hs:(153,1)-(157,39) 25833      514032    0.6    0.5     1.8    2.4
+           nextWord64                System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25835      514032    0.9    1.8     1.2    1.9
+            nextWord64.seed'         System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25836      514032    0.0    0.0     0.3    0.2
+             plus                    System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25837           0    0.3    0.2     0.3    0.2
+      construct.g                    Random.PLprops         src/Random/PLprops.hs:130:11-20                25883      127116    0.1    0.1     2.3    6.5
+       gens                          Random.PLprops         src/Random/PLprops.hs:100:1-32                 25884     1148221    0.6    1.5     2.3    6.4
+        next                         System.Random.Internal src/System/Random/Internal.hs:473:19-27        25885           0    0.0    0.0     1.7    4.9
+         next                        System.Random.Internal src/System/Random/Internal.hs:479:3-19         25886           0    0.1    0.0     1.7    4.9
+          nextInt                    System.Random.SplitMix src/System/Random/SplitMix.hs:(153,1)-(157,39) 25887     1021105    0.5    1.0     1.5    4.9
+           nextWord64                System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25893     1021105    0.9    3.5     1.1    3.9
+            nextWord64.seed'         System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25894     1021105    0.0    0.0     0.2    0.3
+             plus                    System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25895           0    0.2    0.3     0.2    0.3
+      dSettings                      Random.PLprops         src/Random/PLprops.hs:(64,1)-(74,22)           25965           0    0.1    0.0     0.1    0.0
+     rconstructors                   Random.PLprops         src/Random/PLprops.hs:(114,1)-(116,49)         25758      300067    0.4    0.5     6.5    7.3
+      rconstructors.rconstructor     Random.PLprops         src/Random/PLprops.hs:116:11-49                25760      300067    0.2    0.0     5.3    5.9
+       constructors                  Random.PLprops         src/Random/PLprops.hs:111:1-47                 25761      300067    0.1    0.0     0.2    0.0
+        excludeCons                  Random.PLprops         src/Random/PLprops.hs:59:27-37                 25763      300067    0.0    0.0     0.0    0.0
+        includeCons                  Random.PLprops         src/Random/PLprops.hs:58:27-37                 25762      300067    0.0    0.0     0.0    0.0
+       r                             Random.PLprops         src/Random/PLprops.hs:97:1-40                  25764      300067    0.5    0.2     4.9    5.9
+        randomR                      System.Random          src/System/Random.hs:206:3-43                  25765      300067    0.0    0.0     4.4    5.6
+         runStateGen                 System.Random.Internal src/System/Random/Internal.hs:416:1-42         25766      300067    0.1    0.0     4.4    5.6
+          uniformRM                  System.Random.Internal src/System/Random/Internal.hs:566:3-85         25767      300067    0.6    1.4     4.3    5.6
+           uniformM                  System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59) 25768           0    0.4    0.6     3.7    4.2
+            uniformWord64            System.Random.Internal src/System/Random/Internal.hs:389:3-35         25769           0    0.1    0.0     3.3    3.6
+             genWord64               System.Random.Internal src/System/Random/Internal.hs:473:19-27        25770           0    0.0    0.0     3.2    3.6
+              genWord64              System.Random.Internal src/System/Random/Internal.hs:481:3-27         25771           0    0.4    0.2     3.2    3.6
+               nextWord64            System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25772      481391    0.6    1.7     2.8    3.3
+                mix64                System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25773      481391    0.4    0.2     1.9    1.5
+                 mix64.z1            System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25778      481391    0.0    0.0     0.7    0.6
+                  shiftXorMultiply   System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25779      481391    0.4    0.2     0.7    0.6
+                   shiftXor          System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25781      481391    0.1    0.2     0.1    0.2
+                   mult              System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25780           0    0.2    0.2     0.2    0.2
+                 mix64.z2            System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25774      481391    0.0    0.0     0.6    0.6
+                  shiftXorMultiply   System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25775      481391    0.2    0.2     0.6    0.6
+                   shiftXor          System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25777      481391    0.2    0.2     0.2    0.2
+                   mult              System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25776           0    0.1    0.2     0.1    0.2
+                 mix64.z3            System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25784      481391    0.2    0.2     0.2    0.2
+                  shiftXor           System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25785      481391    0.0    0.0     0.0    0.0
+                nextWord64.seed'     System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25782      481391    0.1    0.0     0.3    0.2
+                 plus                System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25783           0    0.2    0.2     0.2    0.2
+      rconstructors.g1               Random.PLprops         src/Random/PLprops.hs:115:11-27                25852      200067    0.1    0.0     0.8    1.0
+       next                          System.Random.Internal src/System/Random/Internal.hs:473:19-27        25853           0    0.0    0.0     0.7    1.0
+        next                         System.Random.Internal src/System/Random/Internal.hs:479:3-19         25854           0    0.0    0.0     0.7    1.0
+         nextInt                     System.Random.SplitMix src/System/Random/SplitMix.hs:(153,1)-(157,39) 25855      200067    0.2    0.2     0.7    1.0
+          nextWord64                 System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25856      200067    0.4    0.7     0.5    0.8
+           nextWord64.seed'          System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25857      200067    0.0    0.0     0.1    0.1
+            plus                     System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25858           0    0.1    0.1     0.1    0.1
+     maxConstr                       Random.PLprops         src/Random/PLprops.hs:56:27-35                 25625      100000    0.0    0.0     0.0    0.0
+     minConstr                       Random.PLprops         src/Random/PLprops.hs:55:27-35                 25624      100000    0.0    0.0     0.0    0.0
+     r                               Random.PLprops         src/Random/PLprops.hs:97:1-40                  25626      100000    0.1    0.1     1.3    1.7
+      randomR                        System.Random          src/System/Random.hs:206:3-43                  25627      100000    0.0    0.0     1.2    1.6
+       runStateGen                   System.Random.Internal src/System/Random/Internal.hs:416:1-42         25628      100000    0.0    0.0     1.2    1.6
+        uniformRM                    System.Random.Internal src/System/Random/Internal.hs:566:3-85         25629      100000    0.2    0.5     1.2    1.6
+         uniformM                    System.Random.Internal src/System/Random/Internal.hs:(570,3)-(574,59) 25633           0    0.1    0.2     0.9    1.2
+          uniformWord64              System.Random.Internal src/System/Random/Internal.hs:389:3-35         25634           0    0.0    0.0     0.8    1.0
+           genWord64                 System.Random.Internal src/System/Random/Internal.hs:473:19-27        25638           0    0.0    0.0     0.7    1.0
+            genWord64                System.Random.Internal src/System/Random/Internal.hs:481:3-27         25639           0    0.1    0.1     0.7    1.0
+             nextWord64              System.Random.SplitMix src/System/Random/SplitMix.hs:(121,1)-(123,29) 25744      133509    0.3    0.5     0.6    0.9
+              mix64                  System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25745      133509    0.0    0.1     0.3    0.4
+               mix64.z1              System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25750      133509    0.0    0.0     0.1    0.2
+                shiftXorMultiply     System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25751      133509    0.0    0.1     0.1    0.2
+                 shiftXor            System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25753      133509    0.0    0.0     0.0    0.0
+                 mult                System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25752           0    0.0    0.0     0.0    0.0
+               mix64.z2              System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25746      133509    0.0    0.0     0.2    0.2
+                shiftXorMultiply     System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25747      133509    0.0    0.1     0.1    0.2
+                 shiftXor            System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25749      133509    0.1    0.0     0.1    0.0
+                 mult                System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25748           0    0.0    0.0     0.0    0.0
+               mix64.z3              System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25756      133509    0.0    0.0     0.0    0.0
+                shiftXor             System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25757      133509    0.0    0.0     0.0    0.0
+              nextWord64.seed'       System.Random.SplitMix src/System/Random/SplitMix.hs:123:5-29         25754      133509    0.0    0.0     0.0    0.0
+               plus                  System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25755           0    0.0    0.0     0.0    0.0
+     rprops'.(...)                   Random.PLprops         src/Random/PLprops.hs:144:11-27                25648      100000    0.0    0.0     2.0    1.2
+      split                          System.Random.Internal src/System/Random/Internal.hs:473:19-27        25649           0    0.0    0.0     2.0    1.2
+       split                         System.Random.Internal src/System/Random/Internal.hs:482:3-23         25650           0    0.1    0.0     2.0    1.2
+        splitSMGen                   System.Random.SplitMix src/System/Random/SplitMix.hs:(225,1)-(229,31) 25684      100000    0.6    0.5     1.9    1.2
+         mix64                       System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25685      100000    0.1    0.0     0.7    0.3
+          mix64.z1                   System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25690      100000    0.1    0.0     0.3    0.1
+           shiftXorMultiply          System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25691      100000    0.1    0.0     0.2    0.1
+            shiftXor                 System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25693      100000    0.1    0.0     0.1    0.0
+            mult                     System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25692           0    0.0    0.0     0.0    0.0
+          mix64.z2                   System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25686      100000    0.0    0.0     0.3    0.1
+           shiftXorMultiply          System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25687      100000    0.1    0.0     0.2    0.1
+            shiftXor                 System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25689      100000    0.0    0.0     0.0    0.0
+            mult                     System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25688           0    0.2    0.0     0.2    0.0
+          mix64.z3                   System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25696      100000    0.0    0.0     0.0    0.0
+           shiftXor                  System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25697      100000    0.0    0.0     0.0    0.0
+         mixGamma                    System.Random.SplitMix src/System/Random/SplitMix.hs:(267,1)-(274,40) 25698      100000    0.1    0.0     0.5    0.3
+          mixGamma.n                 System.Random.SplitMix src/System/Random/SplitMix.hs:269:9-48         25699      100000    0.0    0.0     0.0    0.0
+          mixGamma.z1                System.Random.SplitMix src/System/Random/SplitMix.hs:268:9-36         25700      100000    0.0    0.0     0.3    0.3
+           mix64variant13            System.Random.SplitMix src/System/Random/SplitMix.hs:(256,1)-(264,9)  25701      100000    0.0    0.0     0.3    0.3
+            mix64variant13.z1        System.Random.SplitMix src/System/Random/SplitMix.hs:261:9-54         25706      100000    0.1    0.0     0.2    0.1
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25707      100000    0.0    0.0     0.1    0.1
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25709      100000    0.0    0.0     0.0    0.0
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25708           0    0.0    0.0     0.0    0.0
+            mix64variant13.z2        System.Random.SplitMix src/System/Random/SplitMix.hs:262:9-54         25702      100000    0.0    0.0     0.1    0.1
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25703      100000    0.1    0.0     0.1    0.1
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25705      100000    0.0    0.0     0.0    0.0
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25704           0    0.0    0.0     0.0    0.0
+            mix64variant13.z3        System.Random.SplitMix src/System/Random/SplitMix.hs:263:9-27         25712      100000    0.0    0.0     0.0    0.0
+             shiftXor                System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25713      100000    0.0    0.0     0.0    0.0
+         splitSMGen.seed'            System.Random.SplitMix src/System/Random/SplitMix.hs:228:5-30         25694      100000    0.0    0.0     0.1    0.0
+          plus                       System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25695           0    0.1    0.0     0.1    0.0
+         splitSMGen.seed''           System.Random.SplitMix src/System/Random/SplitMix.hs:229:5-31         25710      100000    0.0    0.0     0.1    0.0
+          plus                       System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25711           0    0.0    0.0     0.0    0.0
+     rprops'.(...)                   Random.PLprops         src/Random/PLprops.hs:145:11-28                25641      100000    0.0    0.0     1.4    1.2
+      split                          System.Random.Internal src/System/Random/Internal.hs:473:19-27        25645           0    0.0    0.0     1.3    1.2
+       split                         System.Random.Internal src/System/Random/Internal.hs:482:3-23         25646           0    0.1    0.0     1.3    1.2
+        splitSMGen                   System.Random.SplitMix src/System/Random/SplitMix.hs:(225,1)-(229,31) 25714      100000    0.3    0.5     1.2    1.2
+         mix64                       System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25715      100000    0.1    0.0     0.4    0.3
+          mix64.z1                   System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25720      100000    0.0    0.0     0.0    0.1
+           shiftXorMultiply          System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25721      100000    0.0    0.0     0.0    0.1
+            shiftXor                 System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25723      100000    0.0    0.0     0.0    0.0
+            mult                     System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25722           0    0.0    0.0     0.0    0.0
+          mix64.z2                   System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25716      100000    0.0    0.0     0.1    0.1
+           shiftXorMultiply          System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25717      100000    0.1    0.0     0.1    0.1
+            shiftXor                 System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25719      100000    0.0    0.0     0.0    0.0
+            mult                     System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25718           0    0.0    0.0     0.0    0.0
+          mix64.z3                   System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25726      100000    0.2    0.0     0.2    0.0
+           shiftXor                  System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25727      100000    0.0    0.0     0.0    0.0
+         mixGamma                    System.Random.SplitMix src/System/Random/SplitMix.hs:(267,1)-(274,40) 25728      100000    0.1    0.0     0.4    0.3
+          mixGamma.n                 System.Random.SplitMix src/System/Random/SplitMix.hs:269:9-48         25729      100000    0.0    0.0     0.0    0.0
+          mixGamma.z1                System.Random.SplitMix src/System/Random/SplitMix.hs:268:9-36         25730      100000    0.0    0.0     0.2    0.3
+           mix64variant13            System.Random.SplitMix src/System/Random/SplitMix.hs:(256,1)-(264,9)  25731      100000    0.0    0.0     0.2    0.3
+            mix64variant13.z1        System.Random.SplitMix src/System/Random/SplitMix.hs:261:9-54         25736      100000    0.0    0.0     0.0    0.1
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25737      100000    0.0    0.0     0.0    0.1
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25739      100000    0.0    0.0     0.0    0.0
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25738           0    0.0    0.0     0.0    0.0
+            mix64variant13.z2        System.Random.SplitMix src/System/Random/SplitMix.hs:262:9-54         25732      100000    0.0    0.0     0.1    0.1
+             shiftXorMultiply        System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25733      100000    0.0    0.0     0.1    0.1
+              shiftXor               System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25735      100000    0.0    0.0     0.0    0.0
+              mult                   System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25734           0    0.1    0.0     0.1    0.0
+            mix64variant13.z3        System.Random.SplitMix src/System/Random/SplitMix.hs:263:9-27         25742      100000    0.0    0.0     0.0    0.0
+             shiftXor                System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25743      100000    0.0    0.0     0.0    0.0
+         splitSMGen.seed'            System.Random.SplitMix src/System/Random/SplitMix.hs:228:5-30         25724      100000    0.0    0.0     0.1    0.0
+          plus                       System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25725           0    0.1    0.0     0.1    0.0
+         splitSMGen.seed''           System.Random.SplitMix src/System/Random/SplitMix.hs:229:5-31         25740      100000    0.0    0.0     0.1    0.0
+          plus                       System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25741           0    0.0    0.0     0.0    0.0
+     rprops'.g1                      Random.PLprops         src/Random/PLprops.hs:144:11-27                25834      100000    0.0    0.0     0.0    0.0
+     rprops'.g2                      Random.PLprops         src/Random/PLprops.hs:144:11-27                25647      100000    0.0    0.0     0.0    0.0
+     rprops'.g4                      Random.PLprops         src/Random/PLprops.hs:145:11-28                25640      100000    0.0    0.0     0.0    0.0
+     rprops'.g3                      Random.PLprops         src/Random/PLprops.hs:145:11-28                25952       99999    0.1    0.0     0.1    0.0
+ CAF:testprops14                     Random.PLprops         <no location info>                             25431           0    0.0    0.0     0.0    0.0
+  testprops10                        Random.PLprops         src/Random/PLprops.hs:(47,1)-(50,50)           25651           0    0.0    0.0     0.0    0.0
+   mkStdGen                          System.Random.Internal src/System/Random/Internal.hs:492:1-45         25653           0    0.0    0.0     0.0    0.0
+    mkSMGen                          System.Random.SplitMix src/System/Random/SplitMix.hs:377:1-61         25654           1    0.0    0.0     0.0    0.0
+     mix64                           System.Random.SplitMix src/System/Random/SplitMix.hs:(247,1)-(252,9)  25655           1    0.0    0.0     0.0    0.0
+      mix64.z1                       System.Random.SplitMix src/System/Random/SplitMix.hs:249:9-54         25661           1    0.0    0.0     0.0    0.0
+       shiftXorMultiply              System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25662           1    0.0    0.0     0.0    0.0
+        shiftXor                     System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25664           1    0.0    0.0     0.0    0.0
+        mult                         System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25663           0    0.0    0.0     0.0    0.0
+      mix64.z2                       System.Random.SplitMix src/System/Random/SplitMix.hs:250:9-54         25656           1    0.0    0.0     0.0    0.0
+       shiftXorMultiply              System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25657           1    0.0    0.0     0.0    0.0
+        shiftXor                     System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25660           1    0.0    0.0     0.0    0.0
+        mult                         System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25659           0    0.0    0.0     0.0    0.0
+      mix64.z3                       System.Random.SplitMix src/System/Random/SplitMix.hs:251:9-27         25665           1    0.0    0.0     0.0    0.0
+       shiftXor                      System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25666           1    0.0    0.0     0.0    0.0
+     mixGamma                        System.Random.SplitMix src/System/Random/SplitMix.hs:(267,1)-(274,40) 25667           1    0.0    0.0     0.0    0.0
+      mixGamma.n                     System.Random.SplitMix src/System/Random/SplitMix.hs:269:9-48         25668           1    0.0    0.0     0.0    0.0
+      mixGamma.z1                    System.Random.SplitMix src/System/Random/SplitMix.hs:268:9-36         25669           1    0.0    0.0     0.0    0.0
+       mix64variant13                System.Random.SplitMix src/System/Random/SplitMix.hs:(256,1)-(264,9)  25670           1    0.0    0.0     0.0    0.0
+        mix64variant13.z1            System.Random.SplitMix src/System/Random/SplitMix.hs:261:9-54         25675           1    0.0    0.0     0.0    0.0
+         shiftXorMultiply            System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25676           1    0.0    0.0     0.0    0.0
+          shiftXor                   System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25678           1    0.0    0.0     0.0    0.0
+          mult                       System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25677           0    0.0    0.0     0.0    0.0
+        mix64variant13.z2            System.Random.SplitMix src/System/Random/SplitMix.hs:262:9-54         25671           1    0.0    0.0     0.0    0.0
+         shiftXorMultiply            System.Random.SplitMix src/System/Random/SplitMix.hs:280:1-46         25672           1    0.0    0.0     0.0    0.0
+          shiftXor                   System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25674           1    0.0    0.0     0.0    0.0
+          mult                       System.Random.SplitMix src/System/Random/SplitMix.hs:397:1-10         25673           0    0.0    0.0     0.0    0.0
+        mix64variant13.z3            System.Random.SplitMix src/System/Random/SplitMix.hs:263:9-27         25682           1    0.0    0.0     0.0    0.0
+         shiftXor                    System.Random.SplitMix src/System/Random/SplitMix.hs:277:1-37         25683           1    0.0    0.0     0.0    0.0
+     plus                            System.Random.SplitMix src/System/Random/SplitMix.hs:398:1-10         25680           0    0.0    0.0     0.0    0.0
+ CAF:testprops15                     Random.PLprops         <no location info>                             25432           0    0.0    0.0     0.0    0.0
+  testprops10                        Random.PLprops         src/Random/PLprops.hs:(47,1)-(50,50)           25608           0    0.0    0.0     0.0    0.0
+   nrprops                           Random.PLprops         src/Random/PLprops.hs:(148,1)-(149,52)         25609           0    0.0    0.0     0.0    0.0
+    numProps                         Random.PLprops         src/Random/PLprops.hs:57:27-34                 25610           0    0.0    0.0     0.0    0.0
+ CAF:wordSizeInBits                  System.Random.Internal src/System/Random/Internal.hs:556:1-14         15698           0    0.0    0.0     0.0    0.0
+  wordSizeInBits                     System.Random.Internal src/System/Random/Internal.hs:556:1-42         25631           1    0.0    0.0     0.0    0.0
+ main                                Main2                  app/Main2.hs:(7,1)-(8,46)                      25593           0    5.7    3.4    61.5   39.8
+  satcheckSimple                     Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:204:1-43            25597      100000    0.2    0.0    55.8   36.3
+   hasopen                           Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(155,1)-(157,47)    25951      544486    0.2    0.0     0.2    0.0
+   mktreeSimple                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:201:1-38            25599           0    0.0    0.0    55.4   36.3
+    jeffreyloop                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(185,1)-(192,39)    25600      397887    1.1    0.2    55.1   36.0
+     allapplied                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(161,1)-(169,45)    25792     2402694    2.2    0.0     2.2    0.0
+     hasopen                         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(155,1)-(157,47)    25791     1710448    0.6    0.0     0.6    0.0
+     jeffreyloop.t1                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:185:21-42           25601      397887    0.2    0.2    37.4   20.5
+      loopN                          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(195,1)-(198,20)    25618      422700    0.5    0.0    10.5   10.4
+       loopN.(...)                   Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:195:15-39           25620      422700    0.3    0.1    10.1   10.4
+        applyDN                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(126,1)-(133,36)    25621     2842832    3.2    5.2     9.8   10.3
+         dnGo                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(122,1)-(123,21)    25622     2723366    0.3    0.0     0.6    0.0
+          isDN                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(118,1)-(119,14)    25623     1850533    0.3    0.0     0.3    0.0
+         applyDN.(...)               Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:132:14-47           25808     1846557    0.4    0.0     5.4    5.0
+          lrScan                     Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-19             25810           0    1.2    0.9     5.0    5.0
+           lrScan1                   Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(75,1)-(79,38)      25811     4235261    2.1    2.1     3.9    4.0
+            lrScan1.(...)            Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25813     2420132    1.8    1.9     1.8    1.9
+            lrScan1.tag              Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25812     2420132    0.0    0.0     0.0    0.0
+            lrScan1.newtree          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25966       31428    0.0    0.0     0.0    0.0
+         applyDN.bool                Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:132:14-47           25807     1846557    0.3    0.0     0.3    0.0
+         applyDN.results             Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:132:14-47           25861      339315    0.1    0.0     0.1    0.0
+         check                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:82:1-22             25969       24813    0.0    0.0     0.0    0.0
+         selectRule                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(48,1)-(57,18)      25967       24813    0.1    0.1     0.1    0.2
+          appendNodes                Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(41,1)-(43,77)      25968       29598    0.1    0.1     0.1    0.1
+           mknb                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(32,1)-(34,87)      25970       24813    0.0    0.0     0.0    0.0
+       loopN.newtree                 Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:195:15-39           25789      422700    0.0    0.0     0.0    0.0
+       loopN.tag                     Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:195:15-39           25619      422700    0.0    0.0     0.0    0.0
+      closure                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:137:1-21            25603           0    0.3    0.4    26.7    9.9
+       closure1                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(140,1)-(147,81)    25790     2764011    4.8    8.5    26.4    9.5
+        contras                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:151:1-63            25862      756399    0.9    0.0    21.5    1.0
+         contras.\                   Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:151:25-59           25863     3002300   12.6    1.0    20.7    1.0
+          ==                         Data.PLProp            src/Data/PLProp.hs:9:20-21                     25864    39138949    8.1    0.0     8.1    0.0
+     jeffreyloop.(...)               Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:188:23-51           25794      297887    0.2    0.1     7.1    7.5
+      applyAlphaRules                Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(62,1)-(69,36)      25795     1772074    2.3    3.4     7.0    7.4
+       alphaGo                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(85,1)-(86,24)      25796     1657397    0.2    0.0     0.3    0.0
+        isAlpha                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(89,1)-(93,17)      25797     1136553    0.0    0.0     0.0    0.0
+       applyAlphaRules.(...)         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:68:14-55            25940     1156519    0.4    0.0     3.2    3.1
+        lrScan                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-19             25941           0    0.7    0.7     2.8    3.1
+         lrScan1                     Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(75,1)-(79,38)      25942     2487246    1.0    1.3     2.1    2.4
+          lrScan1.(...)              Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25944     1474187    1.1    1.1     1.1    1.1
+          lrScan1.tag                Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25943     1474187    0.0    0.0     0.0    0.0
+          lrScan1.newtree            Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25946      143460    0.0    0.0     0.0    0.0
+       applyAlphaRules.bool          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:68:14-55            25939     1156519    0.4    0.0     0.4    0.0
+       applyAlphaRules.results       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:68:14-55            25945      284262    0.0    0.0     0.0    0.0
+       check                         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:82:1-22             25949       92012    0.0    0.0     0.0    0.0
+       selectRule                    Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(48,1)-(57,18)      25947       92012    0.3    0.4     0.8    0.9
+        appendNodes                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(41,1)-(43,77)      25948      122808    0.4    0.4     0.4    0.5
+         mknb                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(32,1)-(34,87)      25950      179968    0.0    0.1     0.0    0.1
+     jeffreyloop.t2                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:188:23-51           25799      297887    0.0    0.0     0.0    0.0
+     jeffreyloop.tag                 Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:188:23-51           25793      297887    0.0    0.0     0.0    0.0
+     jeffreyloop.(...)               Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:191:30-57           25798      205875    0.2    0.1     6.6    7.8
+      applyBetaRules                 Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(96,1)-(103,36)     25800     1157492    1.8    2.6     6.4    7.6
+       betaGo                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(106,1)-(107,23)    25801     1066588    0.1    0.0     0.3    0.0
+        isBeta                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(110,1)-(115,16)    25802      693528    0.2    0.0     0.2    0.0
+       applyBetaRules.(...)          Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:102:14-54           25957      764587    0.2    0.0     2.2    2.1
+        lrScan                       Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:72:1-19             25958           0    0.6    0.5     2.1    2.1
+         lrScan1                     Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(75,1)-(79,38)      25959     1415782    0.9    1.0     1.5    1.6
+          lrScan1.(...)              Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25961      951617    0.6    0.6     0.6    0.6
+          lrScan1.tag                Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25960      951617    0.0    0.0     0.0    0.0
+          lrScan1.newtree            Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:76:28-46            25963      300422    0.0    0.0     0.0    0.0
+       applyBetaRules.bool           Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:102:14-54           25962      623785    0.1    0.0     0.1    0.0
+       applyBetaRules.results        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:102:14-54           25956      300422    0.0    0.0     0.0    0.0
+       check                         Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:82:1-22             25806      205875    0.0    0.0     0.0    0.0
+       selectRule                    Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(48,1)-(57,18)      25803      205875    0.9    1.2     1.9    2.9
+        appendNodes                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(41,1)-(43,77)      25804      309501    0.9    1.6     1.0    1.7
+         mknb                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(32,1)-(34,87)      25814      593174    0.1    0.1     0.1    0.1
+     jeffreyloop.t3                  Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:191:30-57           25805      205875    0.0    0.0     0.0    0.0
+    prepPTree                        Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:174:1-35            25604      100000    0.1    0.1     0.3    0.3
+     mknb                            Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:(32,1)-(34,87)      25617      100000    0.0    0.0     0.0    0.0
+     prepTProps                      Trees.JeffreyTrees2    src/Trees/JeffreyTrees2.hs:177:1-26            25606           0    0.1    0.2     0.1    0.2

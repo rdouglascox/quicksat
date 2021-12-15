@@ -39,6 +39,26 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - quicksat
+  quicksat-jeffrey2:
+    main:                Main2.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -main-is Main2
+    dependencies:
+    - quicksat
+  quicksat-dpll:
+    main:                Main3.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -main-is Main3
+    dependencies:
+    - quicksat
 
 tests:
   quicksat-test:

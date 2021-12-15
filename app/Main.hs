@@ -20,6 +20,7 @@ import qualified  DP.DPLL as DPLL1
 import qualified Tables.Tables as T1
 import qualified Trees.JeffreyTrees1 as JT1
 import qualified Trees.JeffreyTrees2 as JT2
+import qualified Trees.JeffreyTrees2 as JT3
 
 main :: IO ()
 main = defaultMain [
@@ -44,6 +45,7 @@ testblock ps = [ bench "TextBook1" $ whnf (deepmap TB1.mktreeSimple) ps
             , bench "TextBook7 - native rose trees" $ whnf (deepmap TB7.mktreeSimple) ps
             , bench "JeffreyTrees1" $ whnf (deepmap JT1.mktreeSimple) ps
             , bench "JeffreyTrees2" $ whnf (deepmap JT2.mktreeSimple) ps
+            , bench "JeffreyTrees3 -- set-based contras" $ whnf (deepmap JT3.mktreeSimple) ps
             , bench "DNFsat" $ whnf (deepmap NF1.dnfsat) ps
             , bench "DPsat" $ whnf (deepmap DP1.dpsat) ps
             , bench "DPLLsat" $ whnf (deepmap DPLL1.dpllsat) ps
