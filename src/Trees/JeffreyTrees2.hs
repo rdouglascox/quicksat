@@ -1,6 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 
-module Trees.JeffreyTrees  where
+module Trees.JeffreyTrees2  where
 
 -- (mktreeSimple, satcheckSimple, prepPTree, appendNodes)
 
@@ -11,6 +11,9 @@ module Trees.JeffreyTrees  where
 
 import Data.PLProp ( Prop(..) )
 import Data.List
+import Random.PLprops
+import Printing.PLprop
+
 
 import Data.Tree -- we simply use the haskell data type for trees 
 import Data.Char (ord)
@@ -61,8 +64,19 @@ applyAlphaRules (Node (Just t) []) = if alphaGo t
     then (selectRule t $ Node (Just (check t)) [],True)
     else (Node (Just t) [],False)
 applyAlphaRules (Node (Just t) ts) = if alphaGo t
-    then (selectRule t $ Node (Just (check t)) [],True)
-    else (Node (Just t) ts,False)
+    then (selectRule t $ Node (Just (check t)) ts,True)
+    else let (results,bool) = lrScan applyAlphaRules ts in
+        (Node (Just t) results,bool)
+
+lrScan :: (PTree -> (PTree,Bool)) -> [PTree] -> ([PTree],Bool)
+lrScan = lrScan1 []
+
+lrScan1 :: [PTree] -> (PTree -> (PTree,Bool)) -> [PTree] -> ([PTree],Bool)
+lrScan1 acc f [] = (acc,False)
+lrScan1 acc f (x:xs) = let (newtree,tag) = f x in 
+    if tag 
+        then (acc ++ (newtree:xs),True)
+        else lrScan1 (acc ++ [x]) f xs 
 
 check :: TProp -> TProp
 check (x,y) = (x,True)
@@ -84,8 +98,9 @@ applyBetaRules (Node (Just t) []) = if betaGo t
     then (selectRule t $ Node (Just (check t)) [],True)
     else (Node (Just t) [],False)
 applyBetaRules (Node (Just t) ts) = if betaGo t
-    then (selectRule t $ Node (Just (check t)) [],True)
-    else (Node (Just t) ts,False)
+    then (selectRule t $ Node (Just (check t)) ts,True)
+    else let (results,bool) = lrScan applyBetaRules ts in
+        (Node (Just t) results,bool)
 
 betaGo :: TProp -> Bool
 betaGo (p,False) = isBeta p
@@ -113,8 +128,9 @@ applyDN (Node (Just t) []) = if dnGo t
     then (selectRule t $ Node (Just (check t)) [],True)
     else (Node (Just t) [],False)
 applyDN (Node (Just t) ts) = if dnGo t
-    then (selectRule t $ Node (Just (check t)) [],True)
-    else (Node (Just t) ts,False)
+    then (selectRule t $ Node (Just (check t)) ts,True)
+    else let (results,bool) = lrScan applyDN ts in
+        (Node (Just t) results,bool)
 
 -- | close any paths that contain contraditions
 closure :: PTree -> PTree
@@ -143,12 +159,14 @@ hasopen (Node (Just (p,b)) ts) = any hasopen ts
 -- | all applied?
 allapplied :: PTree -> Bool
 allapplied (Node Nothing t) = True
-allapplied (Node (Just (p,True)) []) = True
 allapplied (Node (Just (Basic p,False)) []) = True
 allapplied (Node (Just (Negation (Basic p),False)) []) = True
+allapplied (Node (Just (Basic p,False)) ts) = all allapplied ts
+allapplied (Node (Just (Negation (Basic p),False)) ts) = all allapplied ts
+allapplied (Node (Just (p,True)) []) = True
 allapplied (Node (Just (p,False)) []) = False
 allapplied (Node (Just (p,True)) ts) = all allapplied ts
-allapplied (Node (Just (p,False)) ts) = False
+allapplied (Node (Just (p,False)) ts) = False 
 
 -- prepare the tree and make the tree etc.
 
@@ -164,16 +182,14 @@ prepTProps = map (, False)
 
 
 jeffreyloop :: PTree -> PTree
-jeffreyloop t = let t1 = closure (loopN t) in
-        if not (hasopen t1)
+jeffreyloop t = let t1 = closure (loopN t) in -- "apply double negation, and close all paths with contradictions"
+        if not (hasopen t1) || allapplied t1
             then t1
-            else let (t2,tag) = applyAlphaRules t1 in
+            else (let (t2,tag) = applyAlphaRules t1 in
                 if tag
                     then jeffreyloop t2
                     else let (t3,tag) = applyBetaRules t2 in
-                                  if allapplied t3
-                                     then t3
-                                     else jeffreyloop t3
+                        jeffreyloop t3)
 
 loopN :: PTree -> PTree
 loopN t = let (newtree,tag) = applyDN t in
@@ -187,3 +203,10 @@ mktreeSimple = jeffreyloop . prepPTree
 satcheckSimple :: [Prop] -> Bool
 satcheckSimple t = hasopen (mktreeSimple t)
 
+printTree' :: PTree -> Tree String
+printTree' (Node Nothing t) =  Node "closed" []
+printTree' (Node (Just t) []) = Node (printprop (fst t) ++ " " ++ show (snd t)) [Node "<- open" []]
+printTree' (Node (Just t) ts) = Node (printprop (fst t) ++ " " ++ show (snd t)) (map printTree' ts)
+
+printTree :: PTree -> IO ()
+printTree x = putStrLn $ (drawTree . printTree') x

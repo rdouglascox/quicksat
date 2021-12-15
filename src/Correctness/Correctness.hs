@@ -12,7 +12,7 @@ import qualified  NormalForms.PLnormalforms as NF1
 import qualified DP.DP as DP1
 import qualified DP.DPLL as DPLL1
 import qualified Tables.Tables as T1
-import qualified Trees.JeffreyTrees as JT1
+import qualified Trees.JeffreyTrees1 as JT1
 
 import Random.PLprops
 

@@ -34,7 +34,8 @@ library
       Printing.PLprop
       Random.PLprops
       Tables.Tables
-      Trees.JeffreyTrees
+      Trees.JeffreyTrees1
+      Trees.JeffreyTrees2
       Trees.TextBook1
       Trees.TextBook2
       Trees.TextBook3
